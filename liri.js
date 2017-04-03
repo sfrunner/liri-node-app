@@ -1,5 +1,6 @@
 var keys = require("./key.js");
 var inquirer = require('inquirer');
+var fs = require('file-system');
 //var twitterUsername;
 inquirer.prompt([
 	{
@@ -45,9 +46,19 @@ inquirer.prompt([
         			return;
    				}
  				else if (!err){
+ 					var number = 1;
  					data.tracks.items.forEach(function(song){
-    					console.log(song);
+    					var songInformation = {
+    						artist: song.artists[0].name,
+    						name: song.name,
+    						previewLink: song.preview_url,
+    						album: song.album.name
+    					};
+    					console.log("Song #" + number + ": " + JSON.stringify(songInformation, null, 2));
+    					console.log("");
+    					number++;
     				});
+    				number = 1;
  				}
  			});		
     	});
