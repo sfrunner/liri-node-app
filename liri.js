@@ -1,7 +1,8 @@
 //Global Variables
 var keys = require("./key.js");
 var inquirer = require("inquirer");
-var fs = require("file-system");
+var file = require("file-system");
+var fs = require("fs");
 var request = require("request");
 require("jsdom").env("", function(err, window) {
     if (err) {
@@ -15,7 +16,7 @@ require("jsdom").env("", function(err, window) {
     inquirer.prompt([
        {
            type: "list",
-           choices:["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says"],
+           choices:["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "clear-log"],
            message:"State what you would like LIRI to do:",
            name: "action"
        }
@@ -87,6 +88,12 @@ require("jsdom").env("", function(err, window) {
             var data = fs.readFileSync("./random.txt", "utf8");
             var randomQuery = data.substring(data.search(",") + 2,data.length - 1);
             spotifyApp(randomQuery);
+        }
+
+        //Initialize delete-log command
+        else if(answers.action.toLowerCase() === "clear-log"){
+            fs.writeFileSync("./log.txt","");
+            console.log("Log is Cleared!")
         }
 
         function spotifyApp(song){   
