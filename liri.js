@@ -15,8 +15,7 @@ require("jsdom").env("", function(err, window) {
     //Initialize Inquirer
     inquirer.prompt([
        {
-           type: "list",
-           choices:["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "clear-log"],
+           type: "input",
            message:"State what you would like LIRI to do:",
            name: "action"
        }
