@@ -15,6 +15,9 @@
   "bugs": {
     "url": "https://github.com/sfrunner/liri-node-app/issues"
   },
+  "engines":{
+    "node": "6.10.2"
+  },
   "homepage": "https://github.com/sfrunner/liri-node-app#readme",
   "dependencies": {
     "file-system": "^2.2.2",
