@@ -95,6 +95,12 @@ require("jsdom").env("", function(err, window) {
             console.log("Log is Cleared!")
         }
 
+        //else conditional statement if no actions are met
+        else{
+            console.log("Please use an acceptable command");
+            console.log("{my-tweets, spotify-this-song, movie-this, do-what-it-says, clear-log}");
+        }
+
         function spotifyApp(song){   
         var spotify = require("spotify");
             spotify.search({ type: "track", query: song }, function(err, data) {
