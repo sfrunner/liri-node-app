@@ -15,8 +15,7 @@ require("jsdom").env("", function(err, window) {
     //Initialize Inquirer
     inquirer.prompt([
        {
-           type: "list",
-           choices:["my-tweets", "spotify-this-song", "movie-this", "do-what-it-says", "clear-log"],
+           type: "input",
            message:"State what you would like LIRI to do:",
            name: "action"
        }
@@ -94,6 +93,12 @@ require("jsdom").env("", function(err, window) {
         else if(answers.action.toLowerCase() === "clear-log"){
             fs.writeFileSync("./log.txt","");
             console.log("Log is Cleared!")
+        }
+
+        //else conditional statement if no actions are met
+        else{
+            console.log("Please use an acceptable command");
+            console.log("{my-tweets, spotify-this-song, movie-this, do-what-it-says, clear-log}");
         }
 
         function spotifyApp(song){   
