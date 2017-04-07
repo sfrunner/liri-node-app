@@ -54,12 +54,8 @@ require("jsdom").env("", function(err, window) {
         //OMDBAPI command
         else if(answers.action.toLowerCase() === "movie-this"){
             inquirer.prompt([
-                {
-                    type: "input",
-                    message: "What movie should I look up?",
-                    name: "movie",
-                    default: "Mr. Nobody"
-                }
+                new promptInput("input","What movie should I look up?","movie");
+                promptInput.default = "Mr. Nobody"
             ]).then(function(answers){
                 request("http://www.omdbapi.com/?type=movie&plot=short&r=json&t=" + answers.movie, function (error, response, body) {
                     console.log("error:", error); // Print the error if one occurrence
