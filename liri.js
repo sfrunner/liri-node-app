@@ -4,10 +4,11 @@ var inquirer = require("inquirer");
 var file = require("file-system");
 var fs = require("fs");
 var request = require("request");
-var promptInput = function(type,message,name){
-    this.name = name;
-    this.message = message;
-    this.type = type;
+var promptInput = function(Type,Message,Name, Default){
+    this.type = Type;
+    this.message = Message;
+    this.name = Name;
+    this.default = Default;
 };
 require("jsdom").env("", function(err, window) {
     if (err) {
@@ -19,7 +20,7 @@ require("jsdom").env("", function(err, window) {
 
     //Initialize Inquirer
     inquirer.prompt([
-       new promptInput("input","State what you would like LIRI to do:","action")
+       new promptInput("input","State what you would like LIRI to do:","action", null)
     ]).then(function (answers){
         //Initialize Twitter Command
         if(answers.action.toLowerCase() === "my-tweets"){
@@ -45,8 +46,7 @@ require("jsdom").env("", function(err, window) {
         //Initialize Spotify Command
         else if(answers.action.toLowerCase() === "spotify-this-song"){
             inquirer.prompt([
-                new promptInput("input","What song should I look up?","song");
-                promptInput.default = "The Sign"
+                new promptInput("input","What song should I look up?","song", "My Ace"),
             ]).then(function(answers){
                 spotifyApp(answers.song);
             });
@@ -54,8 +54,7 @@ require("jsdom").env("", function(err, window) {
         //OMDBAPI command
         else if(answers.action.toLowerCase() === "movie-this"){
             inquirer.prompt([
-                new promptInput("input","What movie should I look up?","movie");
-                promptInput.default = "Mr. Nobody"
+                new promptInput("input","What movie should I look up?","movie","Mr.Nobody")
             ]).then(function(answers){
                 request("http://www.omdbapi.com/?type=movie&plot=short&r=json&t=" + answers.movie, function (error, response, body) {
                     console.log("error:", error); // Print the error if one occurrence
