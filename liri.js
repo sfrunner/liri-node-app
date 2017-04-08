@@ -57,20 +57,24 @@ require("jsdom").env("", function(err, window) {
                 new promptInput("input","What movie should I look up?","movie","Mr.Nobody")
             ]).then(function(answers){
                 request("http://www.omdbapi.com/?type=movie&plot=short&r=json&t=" + answers.movie, function (error, response, body) {
-                    console.log("error:", error); // Print the error if one occurrence
                     var bodyJSON = JSON.parse(body);
-                    consoleAppendFile("Movie Title: " + bodyJSON.Title);
-                    consoleAppendFile("Year Released: " + bodyJSON.Year);
-                    consoleAppendFile("IMDB Rating: " + bodyJSON.imdbRating);
-                    consoleAppendFile("Country of Movie Production: " + bodyJSON.Country);
-                    consoleAppendFile("Movie Language: " + bodyJSON.Language);
-                    consoleAppendFile("Plot: " + bodyJSON.Plot);
-                    consoleAppendFile("Actors: " + bodyJSON.Actors);
-                    //Rotten Tomatoes Ranking
-                    consoleAppendFile("Rotten Tomatoes Rating: " + bodyJSON.Ratings[2].Value);
-                    //Official Movie URL instead of Rotten Tomatoes URL as it does not exist in response
-                    consoleAppendFile("Official Movie Website: " + bodyJSON.Website);
-                    logTimeLine();
+                    if(bodyJSON.Title == null){
+                        console.log("No Movie was Found!");
+                    }
+                    else{
+                        consoleAppendFile("Movie Title: " + bodyJSON.Title);
+                        consoleAppendFile("Year Released: " + bodyJSON.Year);
+                        consoleAppendFile("IMDB Rating: " + bodyJSON.imdbRating);
+                        consoleAppendFile("Country of Movie Production: " + bodyJSON.Country);
+                        consoleAppendFile("Movie Language: " + bodyJSON.Language);
+                        consoleAppendFile("Plot: " + bodyJSON.Plot);
+                        consoleAppendFile("Actors: " + bodyJSON.Actors);
+                        //Rotten Tomatoes Ranking
+                        consoleAppendFile("Rotten Tomatoes Rating: " + bodyJSON.Ratings[2].Value);
+                        //Official Movie URL instead of Rotten Tomatoes URL as it does not exist in response
+                        consoleAppendFile("Official Movie Website: " + bodyJSON.Website);
+                        logTimeLine();
+                    }
                 });
             });
         }

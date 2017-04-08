@@ -6,3 +6,56 @@ Tweet #1 was created at Mon Apr 03 01:25:08 2017 and sfrunner1188 tweeted It's a
 Tweet #2 was created at Mon Apr 03 01:23:11 2017 and sfrunner1188 tweeted Testing 1.2.3..
 Logged at Sat Apr 08 2017 10:13:22 GMT-0700 (Pacific Daylight Time)
 
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
+Movie Title: John Wick
+Year Released: 2014
+IMDB Rating: 7.2
+Country of Movie Production: USA
+Movie Language: English, Russian, Hungarian
+Plot: An ex-hitman comes out of retirement to track down the gangsters that took everything from him.
+Actors: Keanu Reeves, Michael Nyqvist, Alfie Allen, Willem Dafoe
+Rotten Tomatoes Rating: 68/100
+Official Movie Website: http://johnwickthemovie.com/
+Logged at Sat Apr 08 2017 16:43:35 GMT-0700 (Pacific Daylight Time)
+
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
+Movie Title: undefined
+Year Released: undefined
+IMDB Rating: undefined
+Country of Movie Production: undefined
+Movie Language: undefined
+Plot: undefined
+Actors: undefined
