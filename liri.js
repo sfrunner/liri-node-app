@@ -10,6 +10,12 @@ var promptInput = function(Type,Message,Name, Default){
     this.name = Name;
     this.default = Default;
 };
+
+// Requiring in a jsdom environment just so you can mount jQuery on the in memory window object
+// is probably overkill for this assignment. Especially because you're only using jQuery's `.each`
+// method. You could simplify this a bunch by using the native `forEach` method on js arrays
+// check out the docs for it here: https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Array/forEach?v=example
+
 require("jsdom").env("", function(err, window) {
     if (err) {
         console.error(err);
@@ -25,18 +31,17 @@ require("jsdom").env("", function(err, window) {
         //Initialize Twitter Command
         if(answers.action.toLowerCase() === "my-tweets"){
             var Twitter = require("twitter");
-            var client = new Twitter({
-               consumer_key: keys.twitterKeys.consumer_key,
-               consumer_secret: keys.twitterKeys.consumer_secret,
-               access_token_key: keys.twitterKeys.access_token_key,
-               access_token_secret: keys.twitterKeys.access_token_secret
-            });
+            // since you've already named your twitter keys the same as what the Twitter client expects
+            // you can simply pass those in instead of redundantly naming them.
+            var client = new Twitter(keys.twitterKeys)
+
             var params = {screen_name: "sfrunner1188"};
             client.get("statuses/user_timeline", params, function(error, tweets, response) {
                 if (!error) {
                     console.log("Latest 20 Tweets for " + params.screen_name);
                     console.log("");
-                    $.each(tweets, function(i, tweet){
+                    // only noticeable difference is the order in which they define the arguments passed to the callback function
+                    tweets.forEach(function(tweet, i){
                         consoleAppendFile("Tweet #" + (i + 1) + " was created at " +tweet.created_at.replace(" +0000", "") + " and " + params.screen_name + " tweeted " + tweet.text);
                     });
                     logTimeLine();
@@ -80,6 +85,9 @@ require("jsdom").env("", function(err, window) {
         }
         //Initial random.txt command
         else if(answers.action.toLowerCase() === "do-what-it-says"){
+            // You generally want to avoid using the synchronous versions of these commands.
+            // Doesn't make a huge difference in this implementation, but it does make handling errors
+            // more difficult.
             var data = fs.readFileSync("./random.txt", "utf8");
             var randomQuery = data.substring(data.search(",") + 2,data.length - 1);
             spotifyApp(randomQuery);
@@ -98,6 +106,8 @@ require("jsdom").env("", function(err, window) {
         }
 
         function spotifyApp(song){   
+        // doesn't make a functional difference, but it's common place to define all your dependencies
+        // at the top of the file as opposed to right before you use them.
         var spotify = require("spotify");
             spotify.search({ type: "track", query: song }, function(err, data) {
                 if ( err ) {
